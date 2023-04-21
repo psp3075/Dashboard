@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import mongoose from "mongoose";
+import kpiRoutes from "./routes/kpi.js";
 
 //Configs
 dotenv.config();
@@ -17,4 +18,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-console.log("hello");
+app.use("/kpi", kpiRoutes);
+
+const PORT = process.env.PORT || 9000;
+mongoose
+  .connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(async () => {
+    app.listen(PORT, () => console.log(`server started on ${PORT}`));
+  })
+  .catch((error) => console.log(`${error} failed to connect`));
