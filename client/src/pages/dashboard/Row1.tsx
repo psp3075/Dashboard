@@ -4,12 +4,15 @@ import { useMemo } from "react";
 import { useTheme } from "@mui/material";
 import {
   AreaChart,
+  LineChart,
   Area,
   XAxis,
   YAxis,
   CartesianGrid,
+  Line,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 import BoxHeader from "@/components/BoxHeader";
 
@@ -28,6 +31,19 @@ const Row1 = (props: Props) => {
           name: month.substring(0, 3),
           revenue: revenue,
           expenses: expenses,
+        };
+      })
+    );
+  }, [data]);
+
+  const revenueProfit = useMemo(() => {
+    return (
+      data &&
+      data[0].monthlyData.map(({ month, revenue, expenses }) => {
+        return {
+          name: month.substring(0, 3),
+          revenue: revenue,
+          profit: Math.floor(revenue - expenses),
         };
       })
     );
@@ -111,7 +127,66 @@ const Row1 = (props: Props) => {
           </AreaChart>
         </ResponsiveContainer>
       </DashboardBox>
-      <DashboardBox gridArea="b"></DashboardBox>
+      <DashboardBox gridArea="b">
+        <BoxHeader
+          title="Revenue and Profit"
+          subtitle="top line represents revenue, bottom line represents profit"
+          sideText="+7%"
+        />
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={revenueProfit}
+            margin={{
+              top: 20,
+              right: 0,
+              left: -10,
+              bottom: 55,
+            }}
+          >
+            <CartesianGrid
+              strokeDasharray={palette.grey[800]}
+              vertical={false}
+            />
+            <XAxis
+              dataKey="name"
+              tickLine={false}
+              style={{ fontSize: "10px" }}
+            />
+            <YAxis
+              yAxisId="left"
+              tickLine={false}
+              axisLine={false}
+              style={{ fontSize: "10px" }}
+            />
+            <YAxis
+              yAxisId="right"
+              orientation="right"
+              tickLine={false}
+              axisLine={false}
+              style={{ fontSize: "10px" }}
+            />
+            <Tooltip />
+            <Legend
+              height={20}
+              wrapperStyle={{
+                margin: "0 0 10px 0",
+              }}
+            />
+            <Line
+              yAxisId="left"
+              type="monotone"
+              dataKey="profit"
+              stroke={palette.tertiary[500]}
+            />
+            <Line
+              yAxisId="right"
+              type="monotone"
+              dataKey="revenue"
+              stroke={palette.primary.main}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </DashboardBox>
       <DashboardBox gridArea="c"></DashboardBox>
     </>
   );
