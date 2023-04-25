@@ -7,7 +7,10 @@ import helmet from "helmet";
 import mongoose from "mongoose";
 import kpiRoutes from "./routes/kpi.js";
 import KPI from "./models/KPI.js";
-import { kpis } from "./data/seeddata.js";
+import productRoutes from "./routes/product.js";
+import Product from "./models/Product.js";
+
+import { kpis, products } from "./data/seeddata.js";
 
 //Configs
 dotenv.config();
@@ -21,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/kpi", kpiRoutes);
+app.use("/product", productRoutes);
 
 const PORT = process.env.PORT || 9000;
 mongoose
@@ -32,5 +36,6 @@ mongoose
     app.listen(PORT, () => console.log(`server started on ${PORT}`));
     // await mongoose.connection.db.dropDatabase();
     // KPI.insertMany(kpis);
+    // Product.insertMany(products);
   })
   .catch((error) => console.log(`${error} failed to connect`));
