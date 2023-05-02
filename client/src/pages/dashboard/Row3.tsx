@@ -196,7 +196,7 @@ const Row3 = (props: Props) => {
         >
           <Box
             height="15px"
-            bgcolor={palette.primary[600]}
+            bgcolor={palette.primary[500]}
             borderRadius="1rem"
             width="40%"
           ></Box>
@@ -204,7 +204,11 @@ const Row3 = (props: Props) => {
         <Typography margin="0 1rem" variant="h6">
           By focusing on profit margins, pricing strategies, and
           diversification, companies can improve their financial performance and
-          achieve long-term success.
+          achieve long-term success. Relying on a single product or service can
+          be risky, as any downturn in that market could lead to significant
+          revenue losses. By diversifying their offerings, businesses can spread
+          their risk and generate revenue from multiple sources, which can lead
+          to a more stable and profitable business model.
         </Typography>
       </DashboardBox>
     </>
