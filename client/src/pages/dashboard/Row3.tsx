@@ -161,19 +161,19 @@ const Row3 = (props: Props) => {
       </DashboardBox>
       <DashboardBox gridArea="i">
         <BoxHeader title="Expense Breakdown By Category" sideText="+3%" />
-        <FlexBetween mt="0.5rem" gap="0.5rem" p="0 1rem" textAlign="center">
+        <FlexBetween mt="0.3rem" gap="0.5rem" p="0 0.5rem" textAlign="center">
           {pieChartData?.map((data, i) => (
             <Box key={`${data[0].name}-${i}`}>
-              <PieChart width={110} height={100}>
+              <PieChart width={110} height={80}>
                 <Pie
                   stroke="none"
                   data={data}
                   innerRadius={18}
-                  outerRadius={35}
+                  outerRadius={33}
                   paddingAngle={2}
                   dataKey="value"
                 >
-                  {data.map((entry, index) => (
+                  {data?.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={pieColors[index]} />
                   ))}
                 </Pie>
@@ -206,9 +206,7 @@ const Row3 = (props: Props) => {
           diversification, companies can improve their financial performance and
           achieve long-term success. Relying on a single product or service can
           be risky, as any downturn in that market could lead to significant
-          revenue losses. By diversifying their offerings, businesses can spread
-          their risk and generate revenue from multiple sources, which can lead
-          to a more stable and profitable business model.
+          revenue losses.
         </Typography>
       </DashboardBox>
     </>

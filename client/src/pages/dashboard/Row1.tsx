@@ -158,10 +158,7 @@ const Row1 = (props: Props) => {
               bottom: 55,
             }}
           >
-            <CartesianGrid
-              strokeDasharray={palette.grey[800]}
-              vertical={false}
-            />
+            <CartesianGrid stroke={palette.grey[800]} vertical={false} />
             <XAxis
               dataKey="name"
               tickLine={false}
