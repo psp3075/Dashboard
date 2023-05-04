@@ -28,9 +28,9 @@ app.use("/kpi", kpiRoutes);
 app.use("/product", productRoutes);
 app.use("/transaction", transactionRoutes);
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 3000;
 mongoose
-  .connect(process.env.MONGODB_URL, {
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
